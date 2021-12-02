@@ -2001,21 +2001,14 @@ const INPUT: &str = "188
 
 fn main() {
     let mut split_stuff = INPUT.lines();
-    let mut current_num: Option<&str> = Some("");
     let mut previous_number: i32 = 0;
     let mut increased_counter = 0;
-    while current_num != None {
-        current_num = split_stuff.next();
-        match current_num {
-            Some(string) => {
-                let my_int: i32 = string.parse().unwrap();
-                if previous_number < my_int {
-                    increased_counter += 1;
-                }
-                previous_number = my_int;
-            }
-            None => {}
+    while let Some(string) = split_stuff.next() {
+        let my_int: i32 = string.parse().unwrap();
+        if previous_number < my_int {
+            increased_counter += 1;
         }
+        previous_number = my_int;
     }
-    println!("Solution: {}", increased_counter - 1);
+    println!("Solution to first part: {}", increased_counter - 1);
 }
