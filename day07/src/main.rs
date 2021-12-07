@@ -48,13 +48,11 @@ fn main() {
 
     let mut least_fuel = 99999999;
     let mut iteration = 0;
-    for i in smollest_number..highest_number {
+    for i in smollest_number..=highest_number {
         let mut sum = 0;
 
         for fuel in crab_fuels.iter() {
-            for q in 1..=(fuel - i).abs() {
-                sum += q;
-            }
+            sum += (fuel - i).abs() * ((fuel - i).abs() + 1) / 2;
         }
 
         if least_fuel > sum {
