@@ -204,5 +204,8 @@ fn main() {
 
     autocomplete_sum.sort();
 
-    println!("Part2: {}", autocomplete_sum);
+    println!(
+        "Part2: {}",
+        autocomplete_sum[(autocomplete_sum.len() as f32 / 2. - 0.5) as usize]
+    );
 }
