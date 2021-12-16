@@ -38,7 +38,6 @@ fn main() {
 }
 
 fn make_operation(values: &Vec<i64>, operation: isize) -> i64 {
-    println!("Values: {:?}, operation: {}", values, operation);
     match operation {
         0 => return values.iter().sum(),
         1 => {
