@@ -1,0 +1,1 @@
+C:\DEV\aoc-2021-rust\day20\target\debug\day20.exe: C:\DEV\aoc-2021-rust\day20\src\day20bigenhancerinput.txt C:\DEV\aoc-2021-rust\day20\src\day20enhancerinput.txt C:\DEV\aoc-2021-rust\day20\src\day20imageinput.txt C:\DEV\aoc-2021-rust\day20\src\day20realimageinput.txt C:\DEV\aoc-2021-rust\day20\src\main.rs
