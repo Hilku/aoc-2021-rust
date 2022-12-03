@@ -74,6 +74,4 @@ fn main() {
 
         group_counter += 1;
     }
-
-    println
 }
