@@ -54,6 +54,7 @@ fn main() {
 
         sensors.push(new_sensor);
     }
+    let mut free_x_y_spaces: Vec<(i64, i64)> = Vec::new();
     for y_coordinate_to_check in 0..4000000 {
         let mut solution_x_ranges: Vec<(i64, i64)> = Vec::new();
         for sensor in &sensors {
@@ -76,13 +77,22 @@ fn main() {
         let mut solution = 0;
 
         solution_x_ranges.sort();
-        println!("{:?}", solution_x_ranges);
-        for solution_x_range in solution_x_ranges {
-            solution += solution_x_range.1 - solution_x_range.0;
+        for index in 0..solution_x_ranges.len() {
+            if index + 1 < solution_x_ranges.len() {
+                if solution_x_ranges[index + 1].0 > 0 && solution_x_ranges[index + 1].0 < 4000000 {
+                    for free_x in solution_x_ranges[index].1..solution_x_ranges[index + 1].0 {
+                        free_x_y_spaces.push((free_x, y_coordinate_to_check));
+                    }
+                }
+            } else {
+                for free_x in solution_x_ranges[index].1..4000000 + 1 {
+                    free_x_y_spaces.push((free_x, y_coordinate_to_check));
+                }
+            }
         }
-
-        println!("{}", solution);
     }
+
+    println!("{:?}", free_x_y_spaces);
 }
 
 fn check_distance(first_coordinate: (i64, i64), second_coordinate: (i64, i64)) -> i64 {
