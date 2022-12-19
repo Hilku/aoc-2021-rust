@@ -57,7 +57,9 @@ fn main() {
                     resource_index += 1;
                 }
             }
-            robot_vec.push(new_robot);
+            if new_robot.resource_needed.len() > 0 {
+                robot_vec.push(new_robot);
+            }
         }
         blueprints.push(robot_vec);
     }
@@ -83,13 +85,15 @@ fn main() {
         for minute in 0..24 {
             let mut new_resource_per_min = resource_per_minute.clone();
             let mut new_resource_i_have = resource_i_have.clone();
+            // println!("----------");
             for robot in &reversed_blueprint {
+                /*  println!("Checking if i can build this robot: {:?}", robot);*/
                 if robot.resource_gathered == Resource::Ore {
                     continue; // for now
                 }
                 let mut can_build_robot = true;
                 for (k, v) in robot.resource_needed.iter() {
-                    if *resource_i_have.get(k).unwrap() > *v {
+                    if *resource_i_have.get(k).unwrap() < *v {
                         can_build_robot = false;
                         break;
                     }
@@ -102,6 +106,7 @@ fn main() {
                     for (k, v) in robot.resource_needed.iter() {
                         *new_resource_i_have.get_mut(k).unwrap() -= *v;
                     }
+                    break;
                 }
             }
 
