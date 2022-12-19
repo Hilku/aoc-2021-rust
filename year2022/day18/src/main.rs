@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 fn main() {
     let input = include_str!("input.txt");
     let mut lines = input.lines();
-    let mut pushing: Vec<Vec<Vec<char>>> = vec![vec![vec!['.'; 30]; 30]; 30];
+    let mut pushing: Vec<Vec<Vec<char>>> = vec![vec![vec!['.'; 24]; 24]; 24];
     let mut biggest_coordinates: (usize, usize, usize) = (0, 0, 0);
     let mut smallest_coordinates: (usize, usize, usize) = (10000, 10000, 10000);
     while let Some(big_line) = lines.next() {
