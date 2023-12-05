@@ -82,26 +82,34 @@ fn main() {
             lowest_returned_number = returned_number;
         }
     }
-
     /*find lowest destination number in map, find the lowest possible number that corresponds to that destination */
 
     println!("Lowest returned membeR: {}", lowest_returned_number);
-    println!("Ranges: {:?}", seed_ranges);
+
     let mut lowest_possible_number: i64 = 325625103999999;
-    for seed_range in seed_ranges {
-        for seed_number in seed_range.source_range_start..seed_range.range_length + 1 {
+
+    for seed in seed_ranges {
+        for seed_number in seed.source_range_start..seed.source_range_start + seed.range_length {
             let mut returned_number = seed_number;
             for vector in &vector_of_vectors {
                 returned_number = get_corresponding_number(returned_number, &vector);
             }
 
             if returned_number < lowest_possible_number {
+                println!("Found lowest number for seed: {}", seed_number);
                 lowest_possible_number = returned_number;
+                println!("Lowest possible membeR: {}", lowest_possible_number);
             }
         }
-        println!("range done!");
+        println!(
+            "Range done! Lowest number for seed: {}",
+            lowest_possible_number
+        );
     }
-    println!("Lowest possible membeR: {}", lowest_possible_number);
+    println!(
+        "Finished! Lowest possible member: {}",
+        lowest_possible_number
+    );
 }
 
 fn get_corresponding_number(initial_number: i64, rows_to_check: &Vec<Row>) -> i64 {
